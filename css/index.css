@@ -1,0 +1,100 @@
+/* ----------------------------------------------------- */
+/* 1. 全体と見出し */
+/* ----------------------------------------------------- */
+html {
+    /* スクロールをスムーズにする設定 */
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif; 
+    background-color: #f5f5f5; /* 落ち着いたオフホワイトの背景 */
+    color: #333; 
+    
+    /* h1（inline-block要素）を中央に配置するために必要 */
+    text-align: center; 
+}
+
+h1 {
+    text-align: center; /* テキスト自体を中央揃え */
+    padding: 20px 0;
+    margin-bottom: 30px;
+    
+    /* 見出しのデザイン */
+    font-size: 2.5em;
+    color: #2c3e50; 
+    border-bottom: 3px solid #3498db; 
+    
+    /* 幅をテキストに合わせ、親要素(body)の text-align: center; で中央配置 */
+    display: inline-block; 
+    width: auto;
+}
+
+/* ----------------------------------------------------- */
+/* 2. 画像セクション (ホバーエフェクト修正済み) */
+/* ----------------------------------------------------- */
+.video {
+    display: flex; 
+    flex-wrap: wrap; /* 画面サイズに合わせて自動で改行 */
+    justify-content: center; /* 中央揃え */
+    gap: 30px; /* 要素間の隙間 */
+    padding: 20px; 
+}
+
+.video a {
+    display: block;
+    text-decoration: none; /* リンクの下線を消す */
+    position: relative; 
+    overflow: hidden; /* 画像とカウント表示の角丸がリンク全体に適用されるように */
+    
+    /* ホバー時のアニメーションの起点と設定 */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* ホバー前の影のスタイル */
+    border-radius: 10px; /* リンク全体に角丸を適用 */
+}
+
+/* リンク全体がホバーした際のアニメーション */
+.video a:hover {
+    transform: translateY(-5px) scale(1.02); /* 画像とテキストが一緒に浮き上がり、拡大 */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* 影を濃くする */
+    cursor: pointer; 
+}
+
+.video img {
+    width: 200px;
+    height: 300px; 
+    object-fit: cover; /* 画像を切り取って指定サイズにフィット */
+    object-position: top; /* 上端を基準にフィット（下の部分が切り取られる） */
+    
+    /* 画像のデザイン */
+    border-radius: 10px; /* 角丸は親要素のoverflow: hiddenで機能 */
+}
+
+/* ----------------------------------------------------- */
+/* 3. 動画カウント表示のスタイル */
+/* ----------------------------------------------------- */
+.video-count {
+    width: 200px; 
+    
+    /* デザイン */
+    background-color: #3498db; 
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px 0;
+    margin: 0; 
+    
+    /* 画像の角丸と影に合わせる */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    
+    /* 画像の下端に重なるように調整 */
+    margin-top: -10px; 
+    position: relative; 
+    z-index: 1;
+    
+    /* ホバーアニメーションは親要素(a)から継承するため、ここでは設定なし */
+}

@@ -1,0 +1,58 @@
+/* 基本設定 */
+html, body {
+    margin: 0;
+    padding: 0;
+    /* スクロール時のちらつきを防ぐ */
+    overflow: hidden; 
+}
+
+/* 動画フィードコンテナ */
+.video-feed-container {
+    height: 100vh;
+    overflow-y: scroll;
+    /* スクロール吸着機能 */
+    scroll-snap-type: y mandatory;
+}
+
+/* 各動画アイテム */
+.video-item {
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 余白部分を黒で埋める */
+    background-color: black;
+    /* ボタンを絶対位置で配置するための基準 */
+    position: relative; 
+}
+
+/* 動画要素 */
+.video-item video {
+    width: 100%;
+    height: 100%;
+    
+    /* 動画全体をコンテナ内に収める（余白ができる） */
+    object-fit: contain; 
+}
+
+/* 音量切り替えボタンのスタイル */
+.mute-toggle {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10; /* 動画より手前に表示 */
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5em;
+    line-height: 1; /* アイコンの位置を調整 */
+    transition: background 0.2s;
+}
+
+.mute-toggle:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
