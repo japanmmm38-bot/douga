@@ -6,36 +6,28 @@ html {
 body {
     margin: 0;
     padding: 0;
-    /* bodyの高さをhtmlに合わせ、画面全体を占めるように */
     height: 100%; 
-    
-    /* 画面全体のスクロールを禁止し、ズレを抑制 */
     overflow: hidden; 
 }
 
 /* 動画フィードコンテナ */
 .video-feed-container {
-    /* 100vhを100%に変更し、bodyの高さ（100%）に依存させる */
+    /* 🔥 修正: bodyの高さ（100%）に依存 */
     height: 100%; 
-    
-    /* コンテナ内のコンテンツのみスクロール可能にする */
     overflow-y: scroll;
-    
-    /* スクロール吸着機能 */
     scroll-snap-type: y mandatory;
 }
 
 /* 各動画アイテム */
 .video-item {
-    /* 各アイテムの高さをビューポートに合わせる */
-    height: 100vh; 
+    /* 🔥 修正: heightを100%にすることで、コンテナの高さに連動させる */
+    /* これにより、ブラウザUI変動の影響を抑制 */
+    height: 100%; 
     scroll-snap-align: start;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* 余白部分を黒で埋める */
     background-color: black;
-    /* ボタンを絶対位置で配置するための基準 */
     position: relative; 
 }
 
@@ -44,10 +36,11 @@ body {
     width: 100%;
     height: 100%;
     
-    /* 🔥 動画の長い方に合わせて余白ができるようにする設定 (contain) */
+    /* 動画全体をコンテナ内に収め、切れるのを防ぐ */
     object-fit: contain; 
+    object-position: center;
     
-    /* 🔥 追加: 動画がビューポートより大きくなるのを防ぐための制限 */
+    /* 画面の高さを超えないようにする最終的な制限 */
     max-width: 100vw;
     max-height: 100vh;
 }
@@ -55,7 +48,6 @@ body {
 /* 音量切り替えボタンのスタイル (PC/デフォルト) */
 .mute-toggle {
     position: absolute;
-    /* PCなど広い画面でのデフォルト位置 */
     bottom: 20px; 
     right: 20px;
     z-index: 10;
@@ -75,10 +67,8 @@ body {
 }
 
 /* 📱 スマートフォン/狭い画面向けの調整 */
-/* 画面幅が900px以下の端末に適用 */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
     .mute-toggle {
-        /* スマホのブラウザUIバーを避けるため、下からの距離を増やす */
         bottom: 80px; 
     }
 }
